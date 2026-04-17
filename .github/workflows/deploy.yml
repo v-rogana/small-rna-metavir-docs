@@ -25,13 +25,13 @@ jobs:
 
       - name: Inject OpenAI API key
         env:
-          OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_KEY: ${{ vars.OPENAI_API_KEY }}
         run: |
           if [ -n "$OPENAI_KEY" ]; then
             sed -i "s|__OPENAI_API_KEY__|${OPENAI_KEY}|g" index.html
             echo "API key injected"
           else
-            echo "No OPENAI_API_KEY secret set — chatbot will ask for key manually"
+            echo "No OPENAI_API_KEY variable set — chatbot will ask for key manually"
           fi
 
       - uses: actions/configure-pages@v5
