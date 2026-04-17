@@ -11,13 +11,14 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#070f1c;--bg-alt:#050c17;
-  --card:#0d1f35;--card-h:#112a45;
-  --accent:#5de4c7;--accent-dim:#3a9e8a;
-  --warn:#d4a537;--err:#e45d5d;
-  --text:#c8d6e5;--dim:#6b7f99;--bright:#eaf0f7;
-  --border:#1a3050;--border-l:#254060;
-  --code:#091729;
+  --bg:#0a0514;--bg-alt:#080410;
+  --card:#110a25;--card-h:#1a1038;
+  --accent:#21918c;--accent-dim:#1a7370;--accent-bright:#5ec962;
+  --warn:#fde725;--err:#e45d5d;
+  --text:#c8d6e5;--dim:#8b8fb8;--bright:#eaf0f7;
+  --border:#1e1450;--border-l:#3b528b;
+  --code:#0c0720;
+  --v-purple:#440154;--v-blue:#3b528b;--v-teal:#21918c;--v-green:#5ec962;--v-yellow:#fde725;
   --ft:'Fraunces',serif;--fb:'Inter',sans-serif;--fc:'JetBrains Mono',monospace;
 }
 html{scroll-behavior:smooth;scroll-padding-top:72px}
@@ -28,11 +29,11 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);line-height:1.
 /* --- Typography --- */
 h1,h2,h3,h4,h5{font-family:var(--ft);color:var(--bright);line-height:1.3}
 h1{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:900;letter-spacing:-.02em}
-h2{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:700;margin:3rem 0 1rem;padding-bottom:.5rem;border-bottom:2px solid var(--border)}
-h3{font-size:1.15rem;font-weight:700;margin:2rem 0 .7rem;color:var(--accent)}
+h2{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:700;margin:3rem 0 1rem;padding-bottom:.5rem;border-bottom:2px solid;border-image:linear-gradient(to right,var(--v-purple),var(--v-teal),var(--v-yellow)) 1}
+h3{font-size:clamp(1rem,.5rem + 1vw,1.15rem);font-weight:700;margin:2rem 0 .7rem;color:var(--accent)}
 h4{font-size:1rem;font-weight:700;margin:1.2rem 0 .4rem}
 p{margin:.5rem 0}
-a{color:var(--accent);text-decoration:none;transition:opacity .15s}a:hover{opacity:.78}
+a{color:var(--accent);text-decoration:none;transition:color .15s}a:hover{color:var(--accent-bright)}
 strong{color:var(--bright)}
 code{font-family:var(--fc);font-size:.88em;background:var(--code);padding:.12em .4em;border-radius:4px;color:var(--accent)}
 pre{background:var(--code);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.3rem;overflow-x:auto;margin:1rem 0;line-height:1.55;position:relative}
@@ -44,7 +45,7 @@ table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.9rem}
 th,td{padding:.55rem .75rem;text-align:left;border:1px solid var(--border)}
 th{background:var(--card);color:var(--accent);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
 td{background:transparent}
-tr:hover td{background:rgba(13,31,53,.5)}
+tr:hover td{background:rgba(26,16,56,.4)}
 @media(max-width:700px){table{display:block;overflow-x:auto}}
 
 /* --- Layout --- */
@@ -59,20 +60,23 @@ section{padding:3rem 0}
 .card h3{margin-top:0}
 .card p:last-child{margin-bottom:0}
 .tag{display:inline-block;padding:.1rem .55rem;border-radius:4px;font-size:.72rem;font-weight:600;margin:.15rem .1rem}
-.tag-teal{background:#163832;color:#5de4c7}
-.tag-gold{background:#3d3520;color:#d4a537}
-.tag-blue{background:#1a2d4d;color:#5da8e4}
-.tag-red{background:#3d1a20;color:#e47070}
-.tag-purple{background:#2a1f40;color:#b08de4}
+.tag-teal{background:rgba(33,145,140,.15);color:#3ecbc4}
+.tag-gold{background:rgba(253,231,37,.1);color:#fde725}
+.tag-blue{background:rgba(59,82,139,.2);color:#7b9bd4}
+.tag-red{background:rgba(228,93,93,.12);color:#e47070}
+.tag-purple{background:rgba(68,1,84,.3);color:#b08de4}
+
+/* --- Icons --- */
+.icon{display:inline-block;width:1em;height:1em;vertical-align:-.125em;flex-shrink:0}
 
 /* === NAV === */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(7,15,28,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;padding:0 1.5rem}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(10,5,20,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;padding:0 1.5rem}
 .n-brand{font-family:var(--ft);font-weight:900;font-size:1.05rem;color:var(--accent);margin-right:2rem;white-space:nowrap;flex-shrink:0}
 .n-brand span{color:var(--dim);font-weight:400;font-size:.85rem;margin-left:.3rem}
 .n-links{display:flex;gap:.15rem;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
 .n-links::-webkit-scrollbar{display:none}
 .n-links a{padding:.35rem .7rem;border-radius:6px;font-size:.82rem;font-weight:500;color:var(--dim);transition:all .15s;white-space:nowrap}
-.n-links a:hover,.n-links a.active{color:var(--accent);background:rgba(93,228,199,.08)}
+.n-links a:hover,.n-links a.active{color:var(--accent-bright);background:rgba(33,145,140,.1)}
 .n-ham{display:none;background:none;border:none;color:var(--accent);font-size:1.4rem;cursor:pointer;margin-left:auto;padding:.3rem}
 @media(max-width:768px){
   .n-links{display:none;position:fixed;top:60px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);flex-direction:column;padding:1rem 1.5rem;gap:.3rem;z-index:499}
@@ -81,14 +85,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(7,15,28,.94)
 }
 
 /* === HERO === */
-.hero{padding:7rem 1.5rem 4rem;text-align:center}
+.hero{padding:7rem 1.5rem 4rem;text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(33,145,140,.07) 0%,transparent 60%)}
 .hero-inner{max-width:800px;margin:0 auto}
 .hero-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.28rem .9rem;border:1px solid var(--accent);border-radius:999px;font-size:.75rem;color:var(--accent);margin-bottom:1.4rem;letter-spacing:.06em;text-transform:uppercase}
 .hero p.sub{font-size:1.12rem;color:var(--dim);max-width:660px;margin:1rem auto 2.2rem}
 .hero-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.65rem 1.4rem;border-radius:8px;font-weight:600;font-size:.9rem;cursor:pointer;border:none;transition:all .18s}
-.btn-p{background:var(--accent);color:var(--bg)}.btn-p:hover{opacity:.85;transform:translateY(-1px)}
+.btn-p{background:var(--accent);color:var(--bg)}.btn-p:hover{background:var(--accent-bright);transform:translateY(-1px)}
 .btn-s{background:var(--card);color:var(--bright);border:1px solid var(--border)}.btn-s:hover{border-color:var(--accent)}
+@media(max-width:500px){.hero{padding:5.5rem 1rem 3rem}.hero p.sub{font-size:1rem}}
 
 /* === PIPELINE DIAGRAM === */
 .mermaid-wrap{margin:2rem 0;overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem}
@@ -100,13 +105,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(7,15,28,.94)
 .gterm h4{color:var(--accent);font-family:var(--fc);font-size:.95rem;margin-bottom:.2rem}
 .gterm p{color:var(--dim);font-size:.9rem;margin:0}
 
+/* === REVEAL ANIMATIONS === */
+@keyframes heroIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-inner{animation:heroIn 800ms cubic-bezier(.16,1,.3,1) both 200ms}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 500ms cubic-bezier(.16,1,.3,1),transform 500ms cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){
+  .hero-inner{animation:none}
+  .reveal,.reveal.visible{opacity:1;transform:none;transition:none}
+}
+
 /* === CHATBOT === */
-.chat-fab{position:fixed;bottom:20px;right:20px;z-index:600;width:54px;height:54px;border-radius:50%;background:var(--accent);color:var(--bg);border:none;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(93,228,199,.35);transition:transform .18s}
+.chat-fab{position:fixed;bottom:20px;right:20px;z-index:600;width:54px;height:54px;border-radius:50%;background:var(--accent);color:var(--bg);border:none;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(33,145,140,.35);transition:transform .18s}
 .chat-fab:hover{transform:scale(1.1)}
+.chat-fab .icon{width:1.4rem;height:1.4rem}
 .chat-panel{position:fixed;bottom:20px;right:20px;z-index:600;width:420px;max-width:calc(100vw - 24px);height:620px;max-height:calc(100vh - 90px);background:var(--bg-alt);border:1px solid var(--border-l);border-radius:16px;display:none;flex-direction:column;box-shadow:0 12px 48px rgba(0,0,0,.6);overflow:hidden}
 .chat-panel.open{display:flex}
 .chat-hdr{padding:.85rem 1.1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--card)}
-.chat-hdr h3{font-size:.95rem;margin:0;color:var(--bright);font-family:var(--fb);font-weight:600}
+.chat-hdr h3{font-size:.95rem;margin:0;color:var(--bright);font-family:var(--fb);font-weight:600;display:flex;align-items:center;gap:.4rem}
+.chat-hdr .icon{width:1.1rem;height:1.1rem;color:var(--accent)}
 .chat-x{background:none;border:none;color:var(--dim);font-size:1.3rem;cursor:pointer;padding:.2rem;line-height:1}.chat-x:hover{color:var(--accent)}
 .chat-msgs{flex:1;overflow-y:auto;padding:.9rem;display:flex;flex-direction:column;gap:.7rem;scroll-behavior:smooth}
 .c-msg{max-width:88%;padding:.65rem .95rem;border-radius:12px;font-size:.86rem;line-height:1.55;word-wrap:break-word;overflow-wrap:break-word}
@@ -120,17 +137,49 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(7,15,28,.94)
 .chat-in{padding:.65rem;border-top:1px solid var(--border);display:flex;gap:.4rem;flex-shrink:0;background:var(--card)}
 .chat-in input,.chat-in textarea{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.55rem .75rem;color:var(--text);font-family:var(--fb);font-size:.86rem;outline:none;resize:none;min-height:0}
 .chat-in input:focus,.chat-in textarea:focus{border-color:var(--accent)}
-.chat-in button{background:var(--accent);color:var(--bg);border:none;border-radius:8px;padding:.55rem .9rem;cursor:pointer;font-weight:600;font-size:.84rem;white-space:nowrap;transition:opacity .15s}
-.chat-in button:hover{opacity:.85}
+.chat-in button{background:var(--accent);color:var(--bg);border:none;border-radius:8px;padding:.55rem .9rem;cursor:pointer;font-weight:600;font-size:.84rem;white-space:nowrap;transition:background .15s}
+.chat-in button:hover{background:var(--accent-bright)}
 .chat-in button:disabled{opacity:.35;cursor:not-allowed}
 @media(max-width:500px){.chat-panel{width:calc(100vw - 12px);height:calc(100vh - 72px);bottom:6px;right:6px;border-radius:12px}}
 
 /* === FOOTER === */
-footer{border-top:1px solid var(--border);padding:2rem 1.5rem;text-align:center;color:var(--dim);font-size:.82rem;margin-top:3rem}
+footer{border-top:2px solid;border-image:linear-gradient(to right,var(--v-purple),var(--v-teal),var(--v-yellow)) 1;padding:2rem 1.5rem;text-align:center;color:var(--dim);font-size:.82rem;margin-top:3rem}
 footer a{color:var(--accent)}
 </style>
 </head>
 <body>
+
+<!-- ===================== SVG ICON SPRITE ===================== -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="icon-flask" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/>
+    <path d="M8.5 2h7"/>
+  </symbol>
+  <symbol id="icon-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>
+  </symbol>
+  <symbol id="icon-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/>
+    <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/>
+    <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/>
+  </symbol>
+  <symbol id="icon-external-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 3h6v6"/>
+    <path d="M10 14 21 3"/>
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+  </symbol>
+  <symbol id="icon-message" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+  </symbol>
+  <symbol id="icon-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 8V4H8"/>
+    <rect width="16" height="12" x="4" y="8" rx="2"/>
+    <path d="M2 14h2"/>
+    <path d="M20 14h2"/>
+    <path d="M15 13v2"/>
+    <path d="M9 13v2"/>
+  </symbol>
+</svg>
 
 <!-- ===================== NAV ===================== -->
 <nav>
@@ -149,12 +198,12 @@ footer a{color:var(--accent)}
 <!-- ===================== HERO ===================== -->
 <header class="hero">
   <div class="hero-inner">
-    <div class="hero-badge">&#127981; Open-Source Bioinformatics</div>
+    <div class="hero-badge"><svg class="icon" aria-hidden="true"><use href="#icon-flask"/></svg> Open-Source Bioinformatics</div>
     <h1>small RNA MetaVir</h1>
     <p class="sub">Automated viral sequence identification through small RNA profiling. Discover novel viruses invisible to BLAST &mdash; via the molecular signatures of RNA interference.</p>
     <div class="hero-btns">
       <a href="#about" class="btn btn-p">Explore the Docs</a>
-      <a href="https://github.com/v-rogana/small-rna-metavir" class="btn btn-s" target="_blank" rel="noopener">&#128279; Pipeline Repository</a>
+      <a href="https://github.com/v-rogana/small-rna-metavir" class="btn btn-s" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#icon-external-link"/></svg> Pipeline Repository</a>
     </div>
   </div>
 </header>
@@ -163,45 +212,45 @@ footer a{color:var(--accent)}
 
 <!-- ===================== ABOUT ===================== -->
 <section id="about">
-<h2>About</h2>
+<h2 class="reveal">About</h2>
 
 <p>small RNA MetaVir is a bioinformatics pipeline designed to detect viral sequences in small RNA sequencing (sRNA-seq) data from arthropods. Unlike conventional approaches that rely exclusively on sequence similarity to known viruses, this tool exploits a fundamental biological mechanism &mdash; <strong>RNA interference (RNAi)</strong> &mdash; to identify viral sequences even when they share no detectable similarity with any sequence in public databases.</p>
 
-<h3>The Biological Principle: RNAi as an Antiviral Defense</h3>
+<h3 class="reveal">The Biological Principle: RNAi as an Antiviral Defense</h3>
 <p>In arthropods such as mosquitoes, flies, and ticks, the RNAi pathway serves as a primary antiviral defense. When a virus infects an insect cell, the host enzyme <strong>Dicer-2</strong> recognizes viral double-stranded RNA (dsRNA) replication intermediates and cleaves them into <strong>small interfering RNAs (siRNAs)</strong> of a characteristic length &mdash; predominantly <strong>21 nucleotides</strong>. These virus-derived siRNAs (vsRNAs) then guide the <strong>RISC</strong> (RNA-Induced Silencing Complex) to degrade the viral genome. This leaves a detectable molecular signature: an enrichment of 21&nbsp;nt reads mapping to the viral sequence.</p>
 <p>By contrast, <strong>endogenous viral elements (EVEs)</strong> &mdash; ancient viral sequences integrated into the host genome &mdash; produce a different class of small RNAs called <strong>piRNAs</strong> (PIWI-interacting RNAs), which are typically <strong>24&ndash;30&nbsp;nt</strong> in length and show a characteristic ping-pong amplification signature.</p>
 
-<div class="grid-2" style="margin-top:1.5rem">
-  <div class="card">
-    <h3>&#129440; Active Virus &mdash; siRNA Signature</h3>
+<div class="grid-2 stagger" style="margin-top:1.5rem">
+  <div class="card reveal">
+    <h3><svg class="icon" aria-hidden="true"><use href="#icon-zap"/></svg> Active Virus &mdash; siRNA Signature</h3>
     <p>Strong peak at <strong>21&nbsp;nt</strong>. Reads on both sense and antisense strands. Produced by Dicer-2 cleavage of viral dsRNA replication intermediates.</p>
     <span class="tag tag-red">21 nt peak</span> <span class="tag tag-blue">Dicer-2</span> <span class="tag tag-teal">RISC</span>
   </div>
-  <div class="card">
-    <h3>&#129516; EVE &mdash; piRNA Signature</h3>
+  <div class="card reveal">
+    <h3><svg class="icon" aria-hidden="true"><use href="#icon-layers"/></svg> EVE &mdash; piRNA Signature</h3>
     <p>Broad distribution at <strong>24&ndash;30&nbsp;nt</strong>. Ping-pong amplification pattern (A at pos 10). Produced from genomically integrated viral sequences.</p>
     <span class="tag tag-gold">24-30 nt</span> <span class="tag tag-purple">PIWI</span> <span class="tag tag-teal">Ping-pong</span>
   </div>
 </div>
 
-<h3>Key Features</h3>
-<div class="grid-3" style="margin-top:.8rem">
-  <div class="card">
+<h3 class="reveal">Key Features</h3>
+<div class="grid-3 stagger" style="margin-top:.8rem">
+  <div class="card reveal">
     <h3>Similarity-Independent</h3>
     <p>Finds novel &ldquo;dark matter&rdquo; viruses with no database matches through their RNAi footprint.</p>
   </div>
-  <div class="card">
+  <div class="card reveal">
     <h3>Virus vs. EVE Classifier</h3>
     <p>Random Forest trained on 2,315 curated sequences (~92.5% accuracy). 48 features from sRNA size profiles.</p>
   </div>
-  <div class="card">
+  <div class="card reveal">
     <h3>Multi-Assembler Strategy</h3>
     <p>Four parallel assemblies (Velvet + SPAdes) merged by CAP3 to maximize contig recovery from short reads.</p>
   </div>
 </div>
 
-<h3>Hardware Requirements</h3>
-<table>
+<h3 class="reveal">Hardware Requirements</h3>
+<table class="reveal">
   <thead><tr><th>Resource</th><th>Minimum</th><th>Recommended</th></tr></thead>
   <tbody>
     <tr><td>CPU Cores</td><td>8</td><td>20+</td></tr>
@@ -213,21 +262,21 @@ footer a{color:var(--accent)}
 
 <!-- ===================== PIPELINE ===================== -->
 <section id="pipeline">
-<h2>Pipeline Architecture</h2>
+<h2 class="reveal">Pipeline Architecture</h2>
 <p>The pipeline orchestrates 12+ stages from raw reads to final virus vs.&nbsp;EVE classification. The diagram below shows the complete processing flow, color-coded by stage type.</p>
 
-<div class="mermaid-wrap">
+<div class="mermaid-wrap reveal">
 <pre class="mermaid">
-%%{init:{'theme':'dark','themeVariables':{'fontSize':'13px','primaryColor':'#0d1f35','primaryBorderColor':'#1a3050','lineColor':'#5de4c7'}}}%%
+%%{init:{'theme':'dark','themeVariables':{'fontSize':'13px','primaryColor':'#110a25','primaryBorderColor':'#3b528b','lineColor':'#21918c'}}}%%
 flowchart TD
-    classDef input fill:#3a4a5a,stroke:#5a6a7a,color:#eaf0f7
-    classDef filter fill:#1a4a6a,stroke:#2a6a9a,color:#c8e4f7
-    classDef assembly fill:#1a6a4a,stroke:#2a9a6a,color:#c8f7e4
-    classDef similarity fill:#8a6a2a,stroke:#baa040,color:#f7eac8
-    classDef ml fill:#4a3a6a,stroke:#7a5aaa,color:#e0d0f7
-    classDef output fill:#3a4a5a,stroke:#5de4c7,color:#5de4c7
+    classDef input fill:#1a1038,stroke:#3b528b,color:#eaf0f7
+    classDef filter fill:#162050,stroke:#3b528b,color:#c0d4f0
+    classDef assembly fill:#0e2e2c,stroke:#21918c,color:#b0e8d8
+    classDef similarity fill:#302808,stroke:#c8b820,color:#f0e8a8
+    classDef ml fill:#220e40,stroke:#8060b0,color:#d0b8f0
+    classDef output fill:#0e2e2c,stroke:#5ec962,color:#5ec962
 
-    IN["&#128196; INPUT\nFASTA / FASTQ reads"]:::input
+    IN["INPUT\nFASTA / FASTQ reads"]:::input
 
     S0["Step 0: Quality Control\nTrim Galore + FastQC\n(only with -fastq input)"]:::filter
     S1["Step 1: Host Filtering\nBowtie vs host genome\n(-v 1, -k 1)"]:::filter
@@ -247,7 +296,7 @@ flowchart TD
     ZS["Step 10: Z-Score Features\nNormalize profiles\n48 features per contig"]:::ml
     RF["Step 11: Random Forest Classifier\n50 trees, 2315 training sequences\nviral vs eve prediction"]:::ml
 
-    OUT["&#127919; OUTPUT\nviral-eve.csv\nsummary.tsv\nFASTA per class\nsRNA profiles"]:::output
+    OUT["OUTPUT\nviral-eve.csv\nsummary.tsv\nFASTA per class\nsRNA profiles"]:::output
 
     IN --> S0 --> S1 --> S2 --> S3
     S3 --> A1 & A2 & A3 & A4
@@ -257,16 +306,16 @@ flowchart TD
 </pre>
 </div>
 
-<h3>Stage Color Legend</h3>
+<h3 class="reveal">Stage Color Legend</h3>
 <p>
   <span class="tag tag-blue">Blue</span> Filtering &amp; QC (host, bacteria, size)
-  &nbsp;&nbsp;<span class="tag tag-teal">Green</span> Assembly (Velvet, SPAdes, CAP3)
-  &nbsp;&nbsp;<span class="tag tag-gold">Orange</span> Similarity search (BLAST, Diamond)
+  &nbsp;&nbsp;<span class="tag tag-teal">Teal</span> Assembly (Velvet, SPAdes, CAP3)
+  &nbsp;&nbsp;<span class="tag tag-gold">Gold</span> Similarity search (BLAST, Diamond)
   &nbsp;&nbsp;<span class="tag tag-purple">Purple</span> Machine learning (profiling, Z-scores, RF)
 </p>
 
-<h3>Technology Stack</h3>
-<table>
+<h3 class="reveal">Technology Stack</h3>
+<table class="reveal">
   <thead><tr><th>Category</th><th>Tools &amp; Versions</th></tr></thead>
   <tbody>
     <tr><td>Languages</td><td>Perl 5.36 (pipeline core), Python 3.9 (ML, filtering), R 4.0 (plotting, feature matrix)</td></tr>
@@ -284,10 +333,10 @@ flowchart TD
 
 <!-- ===================== INSTALLATION ===================== -->
 <section id="installation">
-<h2>Installation</h2>
+<h2 class="reveal">Installation</h2>
 
-<h3>Docker (Recommended)</h3>
-<pre><code># 1. Clone the repository
+<h3 class="reveal">Docker (Recommended)</h3>
+<pre class="reveal"><code># 1. Clone the repository
 git clone https://github.com/v-rogana/small-rna-metavir.git
 cd small-rna-metavir/docker
 
@@ -305,8 +354,8 @@ docker run -it --rm \
 cd /small-rna-metavir/src/pipeline
 perl main.pl -h   # verify installation</code></pre>
 
-<h3>Podman (Staged Builds)</h3>
-<pre><code># Build with caching for faster rebuilds
+<h3 class="reveal">Podman (Staged Builds)</h3>
+<pre class="reveal"><code># Build with caching for faster rebuilds
 podman build . --target=stage_perl         -t srna/perl:v01
 podman build . --target=stage_python       -t srna/python:v01  --cache-from=localhost/srna/perl:v01
 podman build . --target=stage_r            -t srna/r:v01       --cache-from=localhost/srna/python:v01
@@ -316,8 +365,8 @@ podman build . --target=small_rna_metavir  -t srna/metavir:v01 --cache-from=loca
 # Run with SELinux-compatible mount
 podman run -it --rm -v /data:/small-rna-metavir/asset:Z srna/metavir:v01 bash</code></pre>
 
-<h3>Required Databases</h3>
-<table>
+<h3 class="reveal">Required Databases</h3>
+<table class="reveal">
   <thead><tr><th>Database</th><th>Container Path</th><th>Size</th><th>Setup Command</th></tr></thead>
   <tbody>
     <tr><td>Host genome</td><td><code>-hostgenome</code> param</td><td>1-3 GB</td><td><code>bowtie-build --threads 20 host.fa host.fa</code></td></tr>
@@ -331,10 +380,10 @@ podman run -it --rm -v /data:/small-rna-metavir/asset:Z srna/metavir:v01 bash</c
 
 <!-- ===================== PARAMETERS ===================== -->
 <section id="parameters">
-<h2>Parameters Reference</h2>
+<h2 class="reveal">Parameters Reference</h2>
 
-<h3>Required Parameters</h3>
-<table>
+<h3 class="reveal">Required Parameters</h3>
+<table class="reveal">
   <thead><tr><th>Parameter</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
   <tbody>
     <tr><td><code>-fasta &lt;path&gt;</code></td><td>Path</td><td>Input reads in FASTA format (.fasta, .fa, .gz). Skips Trim Galore/FastQC.</td><td><code>-fasta /data/lib_trimmed.fasta</code></td></tr>
@@ -349,8 +398,8 @@ podman run -it --rm -v /data:/small-rna-metavir/asset:Z srna/metavir:v01 bash</c
   </tbody>
 </table>
 
-<h3>Optional Parameters</h3>
-<table>
+<h3 class="reveal">Optional Parameters</h3>
+<table class="reveal">
   <thead><tr><th>Parameter</th><th>Default</th><th>Description</th></tr></thead>
   <tbody>
     <tr><td><code>-hash &lt;int&gt;</code></td><td>15</td><td>Velvet hash (k-mer) length for fixed-hash assembly. Try 13 or 17 if default yields poor results.</td></tr>
@@ -363,8 +412,8 @@ podman run -it --rm -v /data:/small-rna-metavir/asset:Z srna/metavir:v01 bash</c
   </tbody>
 </table>
 
-<h3>Key Internal Constants (Hardcoded)</h3>
-<table>
+<h3 class="reveal">Key Internal Constants (Hardcoded)</h3>
+<table class="reveal">
   <thead><tr><th>Tool</th><th>Parameter</th><th>Value</th></tr></thead>
   <tbody>
     <tr><td>Bowtie (mapping)</td><td><code>-v</code> / <code>-k</code></td><td>1 mismatch / 1 alignment</td></tr>
@@ -381,9 +430,9 @@ podman run -it --rm -v /data:/small-rna-metavir/asset:Z srna/metavir:v01 bash</c
 
 <!-- ===================== EXAMPLES ===================== -->
 <section id="examples">
-<h2>Usage Examples</h2>
+<h2 class="reveal">Usage Examples</h2>
 
-<div class="card">
+<div class="card reveal">
   <h3>Aedes aegypti Virome Analysis</h3>
   <pre><code>perl main.pl \
     -fasta /small-rna-metavir/asset/libs/RNPM162_trimmed.fq.fasta \
@@ -393,7 +442,7 @@ podman run -it --rm -v /data:/small-rna-metavir/asset:Z srna/metavir:v01 bash</c
   <p style="font-size:.85rem;color:var(--dim)">Runtime: ~2-6 hours &bull; Disk: 5-20 GB per library</p>
 </div>
 
-<div class="card">
+<div class="card reveal">
   <h3>Raw FASTQ with Automatic Trimming</h3>
   <pre><code>perl main.pl \
     -fastq /data/raw/library_R1.fastq.gz \
@@ -403,7 +452,7 @@ podman run -it --rm -v /data:/small-rna-metavir/asset:Z srna/metavir:v01 bash</c
   <p style="font-size:.85rem;color:var(--dim)">Trim Galore + FastQC run automatically before the pipeline.</p>
 </div>
 
-<div class="card">
+<div class="card reveal">
   <h3>No Host Reference (Non-Model Organism)</h3>
   <pre><code>perl main.pl \
     -fasta /data/nonmodel_trimmed.fasta \
@@ -412,7 +461,7 @@ podman run -it --rm -v /data:/small-rna-metavir/asset:Z srna/metavir:v01 bash</c
     -exec-id nonmodel-01 -prefix NM01</code></pre>
 </div>
 
-<div class="card">
+<div class="card reveal">
   <h3>Large Library with Disk Optimization</h3>
   <pre><code>perl main.pl \
     -fasta /data/large_library.fasta \
@@ -423,7 +472,7 @@ podman run -it --rm -v /data:/small-rna-metavir/asset:Z srna/metavir:v01 bash</c
   <p style="font-size:.85rem;color:var(--dim)"><code>-clean</code> saves 50-80% disk; <code>-nononviralprofiles</code> reduces runtime.</p>
 </div>
 
-<div class="card">
+<div class="card reveal">
   <h3>SRA Data Re-analysis</h3>
   <pre><code># Download from SRA
 fasterq-dump SRR1652436 -O /data/sra/ -e 8
@@ -436,8 +485,8 @@ perl main.pl \
     -exec-id val-SRR1652436 -prefix SRR1652436</code></pre>
 </div>
 
-<h3>Interpreting Classification Results</h3>
-<table>
+<h3 class="reveal">Interpreting Classification Results</h3>
+<table class="reveal">
   <thead><tr><th>Similarity</th><th>ML Class</th><th>Interpretation</th></tr></thead>
   <tbody>
     <tr><td><span class="tag tag-red">viral</span></td><td><span class="tag tag-red">viral</span></td><td><strong>Confirmed active virus.</strong> Known virus with siRNA-like profile.</td></tr>
@@ -452,9 +501,9 @@ perl main.pl \
 
 <!-- ===================== GLOSSARY ===================== -->
 <section id="glossary">
-<h2>Glossary</h2>
+<h2 class="reveal">Glossary</h2>
 
-<h3>Molecular Biology &amp; RNA Interference</h3>
+<h3 class="reveal">Molecular Biology &amp; RNA Interference</h3>
 <div class="gterm"><h4>Dicer / Dicer-2</h4><p>RNase III enzyme that cleaves viral dsRNA into 21-23 nt siRNA duplexes. The 21 nt peak is a hallmark of Dicer activity against active viruses. Dicer-2 is the specific isoform involved in antiviral RNAi in insects.</p></div>
 <div class="gterm"><h4>dsRNA (Double-Stranded RNA)</h4><p>RNA with two complementary strands. Viral replication intermediates form dsRNA, triggering the RNAi pathway.</p></div>
 <div class="gterm"><h4>EVE (Endogenous Viral Element)</h4><p>A viral sequence integrated into the host genome. EVEs are inherited vertically and produce piRNAs (24-30 nt) instead of siRNAs. Distinguishing EVEs from active infections is a key goal of this pipeline.</p></div>
@@ -465,7 +514,7 @@ perl main.pl \
 <div class="gterm"><h4>siRNA (Small Interfering RNA)</h4><p>20-23 nt RNA produced by Dicer. The 21 nt peak is the molecular signature of active viral replication in arthropods.</p></div>
 <div class="gterm"><h4>vsRNA (Virus-Derived Small RNA)</h4><p>Small RNAs from viral sequences. Can be siRNAs (active virus, Dicer) or piRNAs (EVE, ping-pong). The size profile reveals the origin.</p></div>
 
-<h3>Genomics &amp; Bioinformatics</h3>
+<h3 class="reveal">Genomics &amp; Bioinformatics</h3>
 <div class="gterm"><h4>Assembly (De Novo)</h4><p>Reconstructing longer sequences (contigs) from short reads without a reference genome. This pipeline uses Velvet, SPAdes, and CAP3.</p></div>
 <div class="gterm"><h4>BLAST (Basic Local Alignment Search Tool)</h4><p>Algorithm for comparing sequences against databases. BLASTn (nucleotide) is used with evalue 1e-5 against the NCBI nt database.</p></div>
 <div class="gterm"><h4>Bowtie</h4><p>Fast short-read aligner for mapping reads to references. Used with -v 1 (1 mismatch), -k 1 (1 alignment), -f (FASTA input).</p></div>
@@ -477,7 +526,7 @@ perl main.pl \
 <div class="gterm"><h4>Scaffold</h4><p>Sequence from SPAdes that may contain gaps bridged by assembly graph information. Merged with Velvet contigs.</p></div>
 <div class="gterm"><h4>Virome</h4><p>The complete collection of viruses in a sample or organism.</p></div>
 
-<h3>Machine Learning &amp; Statistics</h3>
+<h3 class="reveal">Machine Learning &amp; Statistics</h3>
 <div class="gterm"><h4>Feature Matrix</h4><p>Tabular representation: rows = contigs, columns = 48 features (21 sense Z-scores + 21 antisense Z-scores + 6 density/ratio features). Input to the classifier.</p></div>
 <div class="gterm"><h4>Random Forest</h4><p>Ensemble ML algorithm using 50 decision trees by majority vote. Trained on 2,315 sequences (1,321 viral + 994 EVE). ~92.5% test accuracy.</p></div>
 <div class="gterm"><h4>Similarity Label</h4><p>Initial contig classification by BLASTn/Diamond: <code>viral</code>, <code>nonviral</code>, or <code>nohit</code>. Distinct from the ML-based <code>class</code> (viral/eve).</p></div>
@@ -496,10 +545,10 @@ perl main.pl \
 </footer>
 
 <!-- ===================== CHATBOT ===================== -->
-<button class="chat-fab" id="chatFab" title="Ask the AI Assistant">&#128172;</button>
+<button class="chat-fab" id="chatFab" title="Ask the AI Assistant" aria-label="Open AI Assistant"><svg class="icon" aria-hidden="true"><use href="#icon-message"/></svg></button>
 <div class="chat-panel" id="chatPanel">
   <div class="chat-hdr">
-    <h3>&#129302; sRNA MetaVir Assistant</h3>
+    <h3><svg class="icon" aria-hidden="true"><use href="#icon-bot"/></svg> sRNA MetaVir Assistant</h3>
     <button class="chat-x" id="chatX">&times;</button>
   </div>
   <div class="chat-msgs" id="chatMsgs">
@@ -608,6 +657,15 @@ msgIn.addEventListener('input',()=>{msgIn.style.height='auto';msgIn.style.height
 function addMsg(role,text){const d=document.createElement('div');d.className='c-msg '+(role==='usr'?'usr':role==='sys'?'sys':'bot');if(role==='bot'){text=text.replace(/```(\w*)\n([\s\S]*?)```/g,'<pre><code>$2</code></pre>').replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');d.innerHTML=text}else{d.textContent=text}msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight}
 
 async function doSend(){const t=msgIn.value.trim();if(!t||!apiKey)return;msgIn.value='';msgIn.style.height='auto';addMsg('usr',t);history.push({role:'user',content:t});sendBtn.disabled=true;typ.style.display='block';try{const r=await fetch('https://api.openai.com/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},body:JSON.stringify({model:'gpt-4o-mini',messages:history,max_tokens:1500,temperature:0.4})});if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.error?.message||'API error '+r.status)}const d=await r.json();const reply=d.choices[0].message.content;history.push({role:'assistant',content:reply});addMsg('bot',reply)}catch(e){addMsg('sys','Error: '+e.message)}finally{sendBtn.disabled=false;typ.style.display='none';msgIn.focus()}}
+
+/* === AUTO-CONNECT IF KEY INJECTED AT BUILD TIME === */
+var _ik='__OPENAI_API_KEY__';
+if(_ik.length>10&&_ik.indexOf('__')!==0){apiKey=_ik;keyArea.style.display='none';msgArea.style.display='flex';msgs.innerHTML='';addMsg('bot','Hello! I can answer questions about the small RNA MetaVir pipeline \u2014 biology, installation, parameters, troubleshooting, or anything else.');history=[{role:'system',content:SYS}]}
+
+/* === REVEAL ON SCROLL === */
+const revObs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target)}})},{rootMargin:'0px 0px -60px 0px',threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){revObs.observe(el)});
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('.stagger').forEach(function(c){var children=c.querySelectorAll(':scope > .reveal');children.forEach(function(ch,i){ch.style.transitionDelay=i*100+'ms'})})}
 })();
 </script>
 </body>
