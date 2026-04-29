@@ -15,30 +15,36 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Inject OpenAI API key
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Build (Next.js static export)
         env:
-          OPENAI_KEY: ${{ vars.OPENAI_API_KEY }}
-        run: |
-          if [ -n "$OPENAI_KEY" ]; then
-            sed -i "s|__OPENAI_API_KEY__|${OPENAI_KEY}|g" index.html
-            echo "API key injected"
-          else
-            echo "No OPENAI_API_KEY variable set — chatbot will ask for key manually"
-          fi
+          NEXT_PUBLIC_OPENAI_API_KEY: ${{ vars.OPENAI_API_KEY }}
+          NEXT_PUBLIC_BASE_PATH: /small-rna-metavir-docs
+        run: npm run build
 
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: out
 
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v4

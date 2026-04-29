@@ -4,3 +4,21 @@ Thumbs.db
 *~
 .vscode/
 .idea/
+
+# Next.js
+/node_modules
+/.next/
+/out/
+/build
+next-env.d.ts
+
+# env
+.env
+.env.local
+.env.*.local
+
+# tests/ generated artifacts
+/tests/pipeline.mmd
+/tests/results/runs/
+/tests/__pycache__/
+/tests/.venv/
