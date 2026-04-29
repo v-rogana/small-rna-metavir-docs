@@ -1,0 +1,54 @@
+{
+  "model": "gpt-4o-mini",
+  "k": 5,
+  "seed": 42,
+  "n_questions": 30,
+  "timestamp": "20260429T034713Z",
+  "categories": {
+    "biology": {
+      "metric": "keyword_recall",
+      "n": 30,
+      "mean": 1.0,
+      "ci95_lo": 1.0,
+      "ci95_hi": 1.0,
+      "p_value_vs_0.5": 9.313225746154785e-10,
+      "lang_match_rate": 1.0
+    },
+    "offtopic": {
+      "metric": "refusal_rate",
+      "n": 30,
+      "mean": 0.6666666666666666,
+      "ci95_lo": 0.5,
+      "ci95_hi": 0.8333333333333334,
+      "p_value_vs_0.5": 0.049368573352694525,
+      "lang_match_rate": 1.0
+    },
+    "outputs": {
+      "metric": "keyword_recall",
+      "n": 30,
+      "mean": 1.0,
+      "ci95_lo": 1.0,
+      "ci95_hi": 1.0,
+      "p_value_vs_0.5": 9.313225746154785e-10,
+      "lang_match_rate": 1.0
+    },
+    "parameters": {
+      "metric": "keyword_recall",
+      "n": 30,
+      "mean": 1.0,
+      "ci95_lo": 1.0,
+      "ci95_hi": 1.0,
+      "p_value_vs_0.5": 9.313225746154785e-10,
+      "lang_match_rate": 1.0
+    },
+    "pipeline_steps": {
+      "metric": "keyword_recall",
+      "n": 30,
+      "mean": 0.9833333333333333,
+      "ci95_lo": 0.95,
+      "ci95_hi": 1.0,
+      "p_value_vs_0.5": 9.313225746154785e-10,
+      "lang_match_rate": 1.0
+    }
+  }
+}

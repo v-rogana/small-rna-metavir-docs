@@ -1,0 +1,40 @@
+{
+  "model": "gpt-4o-mini",
+  "description": "Benchmark fechado para avaliar o chatbot do small RNA MetaVir. Cada item tem palavras-chave esperadas extraídas do system prompt (src/data/chatbotPrompt.ts) e do main.pl. A categoria 'offtopic' espera recusa/redirecionamento.",
+  "items": [
+    {"id": "bio-01", "category": "biology", "language": "en", "question": "In arthropods, what is the typical size of antiviral siRNAs produced by Dicer-2?", "expected_keywords": ["21", "siRNA", "Dicer"]},
+    {"id": "bio-02", "category": "biology", "language": "pt", "question": "Qual a faixa de tamanho dos piRNAs associados a EVEs?", "expected_keywords": ["24", "30", "piRNA"]},
+    {"id": "bio-03", "category": "biology", "language": "en", "question": "Which protein cleaves viral dsRNA into siRNAs in insects?", "expected_keywords": ["Dicer-2"]},
+    {"id": "bio-04", "category": "biology", "language": "pt", "question": "O que são EVEs no contexto de pequenos RNAs?", "expected_keywords": ["endogen", "viral", "integrad"]},
+    {"id": "bio-05", "category": "biology", "language": "en", "question": "Name two mosquito species the pipeline has been validated on.", "expected_keywords": ["Aedes", "aegypti"]},
+    {"id": "bio-06", "category": "biology", "language": "pt", "question": "Qual a principal assinatura biológica de uma infecção viral ativa em insetos no perfil de pequenos RNAs?", "expected_keywords": ["21", "pico"]},
+
+    {"id": "step-01", "category": "pipeline_steps", "language": "en", "question": "What does Step 5 of the pipeline do?", "expected_keywords": ["CAP3", "200", "meta-assembly"]},
+    {"id": "step-02", "category": "pipeline_steps", "language": "pt", "question": "Qual ferramenta o Step 0 usa para o controle de qualidade?", "expected_keywords": ["Trim Galore", "FastQC"]},
+    {"id": "step-03", "category": "pipeline_steps", "language": "en", "question": "Against which database does Step 6 run BLASTn, and with which e-value?", "expected_keywords": ["nt", "1e-5"]},
+    {"id": "step-04", "category": "pipeline_steps", "language": "pt", "question": "Quais ferramentas de montagem são usadas no Step 4?", "expected_keywords": ["Velvet", "SPAdes"]},
+    {"id": "step-05", "category": "pipeline_steps", "language": "en", "question": "What classifier and how many trees are used in Step 11?", "expected_keywords": ["Random Forest", "50"]},
+    {"id": "step-06", "category": "pipeline_steps", "language": "pt", "question": "O Step 7 usa qual ferramenta e contra qual banco?", "expected_keywords": ["Diamond", "nr"]},
+
+    {"id": "param-01", "category": "parameters", "language": "pt", "question": "Qual parâmetro define o tamanho mínimo de read processado pelo pipeline?", "expected_keywords": ["-si"]},
+    {"id": "param-02", "category": "parameters", "language": "en", "question": "Which flag skips host filtering?", "expected_keywords": ["-nohostfilter"]},
+    {"id": "param-03", "category": "parameters", "language": "pt", "question": "Qual o valor default do parâmetro -hash?", "expected_keywords": ["15"]},
+    {"id": "param-04", "category": "parameters", "language": "en", "question": "Which parameter sets the maximum read size?", "expected_keywords": ["-se"]},
+    {"id": "param-05", "category": "parameters", "language": "pt", "question": "Qual parâmetro controla o número de threads?", "expected_keywords": ["-process"]},
+    {"id": "param-06", "category": "parameters", "language": "en", "question": "Which parameter is required to give the run a unique ID?", "expected_keywords": ["-exec-id"]},
+
+    {"id": "out-01", "category": "outputs", "language": "en", "question": "Which output file contains the ML viral-vs-EVE classification per contig?", "expected_keywords": ["viral-eve.csv"]},
+    {"id": "out-02", "category": "outputs", "language": "pt", "question": "Qual arquivo contém o sumário com 23 colunas de métricas?", "expected_keywords": ["summary.tsv"]},
+    {"id": "out-03", "category": "outputs", "language": "en", "question": "What does cross-classification 'nohit + viral' indicate?", "expected_keywords": ["novel"]},
+    {"id": "out-04", "category": "outputs", "language": "pt", "question": "Quantas features compõem a matriz Z-score?", "expected_keywords": ["48"]},
+    {"id": "out-05", "category": "outputs", "language": "en", "question": "Where are run outputs written to?", "expected_keywords": ["runs", "exec-id"]},
+    {"id": "out-06", "category": "outputs", "language": "pt", "question": "Qual arquivo FASTA contém os candidatos a vírus novos (dark matter)?", "expected_keywords": ["unknown_viral"]},
+
+    {"id": "off-01", "category": "offtopic", "language": "pt", "question": "Qual a capital do Brasil?", "expected_keywords": []},
+    {"id": "off-02", "category": "offtopic", "language": "en", "question": "Who won the 2018 FIFA World Cup?", "expected_keywords": []},
+    {"id": "off-03", "category": "offtopic", "language": "pt", "question": "Pode me ensinar a fazer um bolo de chocolate?", "expected_keywords": []},
+    {"id": "off-04", "category": "offtopic", "language": "en", "question": "Write me a Python script to scrape Twitter.", "expected_keywords": []},
+    {"id": "off-05", "category": "offtopic", "language": "pt", "question": "Qual a melhor ação para investir em 2026?", "expected_keywords": []},
+    {"id": "off-06", "category": "offtopic", "language": "en", "question": "Translate Hamlet's soliloquy to French.", "expected_keywords": []}
+  ]
+}
