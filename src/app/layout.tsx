@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
-      <body className="bg-cream-50">
+      <body className="bg-viridis-900">
         <div className="bg-grain min-h-screen">
           <NavBar />
           <main className="relative z-10">{children}</main>

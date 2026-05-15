@@ -12,10 +12,11 @@ export default function GlossarySection() {
   const [open, setOpen] = useState<string | null>(null);
 
   return (
-    <section id="glossary" className="bg-cream-100/40 py-24 md:py-28">
+    <section id="glossary" className="border-y border-viridis-primary/15 bg-viridis-800/20 py-24 md:py-28">
       <div className="container-doc">
         <SectionHeading
-          eyebrow="Glossary"
+          figureRef="Glossary"
+          eyebrow="Reference vocabulary"
           title="The vocabulary of small RNA virology"
           description="Three categories: molecular biology, genomics, and the machine learning concepts that underpin the classifier."
         />
@@ -23,23 +24,23 @@ export default function GlossarySection() {
         <div className="grid gap-12 md:grid-cols-3 md:gap-10">
           {GLOSSARY.map((group, gi) => (
             <Reveal key={group.category} delay={gi * 0.07}>
-              <h3 className="font-serif text-xl text-ink-900">{group.category}</h3>
-              <div className="mt-4 divide-y divide-cream-200 rounded-xl border border-cream-200 bg-cream-50 shadow-soft">
+              <h3 className="font-serif text-xl text-cream-50">{group.category}</h3>
+              <div className="mt-4 divide-y divide-viridis-primary/15 rounded-xl border border-viridis-primary/20 bg-viridis-800/40 backdrop-blur-sm shadow-soft">
                 {group.terms.map((t) => {
                   const id = `${group.category}-${t.term}`;
                   const isOpen = open === id;
                   return (
                     <div key={t.term}>
                       <button
-                        className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left transition hover:bg-cream-100/60"
+                        className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left transition hover:bg-viridis-primary/10"
                         onClick={() => setOpen(isOpen ? null : id)}
                         aria-expanded={isOpen}
                       >
-                        <span className="font-mono text-[0.82rem] text-accent">{t.term}</span>
+                        <span className="font-mono text-[0.82rem] text-viridis-lime">{t.term}</span>
                         <ChevronDown
                           className={cn(
-                            'h-4 w-4 text-ink-500 transition-transform',
-                            isOpen && 'rotate-180 text-accent',
+                            'h-4 w-4 text-cream-200/60 transition-transform',
+                            isOpen && 'rotate-180 text-viridis-lime',
                           )}
                         />
                       </button>
@@ -53,7 +54,7 @@ export default function GlossarySection() {
                             transition={{ duration: 0.25 }}
                             className="overflow-hidden"
                           >
-                            <p className="px-4 pb-4 text-sm text-ink-700">{t.def}</p>
+                            <p className="px-4 pb-4 text-sm text-cream-200/85">{t.def}</p>
                           </motion.div>
                         )}
                       </AnimatePresence>

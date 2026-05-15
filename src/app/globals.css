@@ -4,36 +4,36 @@
 
 @layer base {
   :root {
-    color-scheme: light;
-    --grain-opacity: 0.035;
+    color-scheme: dark;
+    --grain-opacity: 0.045;
   }
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 88px;
   }
   body {
-    @apply bg-cream-50 text-ink-900 font-sans antialiased;
+    @apply bg-viridis-900 text-cream-100 font-sans antialiased;
     font-feature-settings: 'ss01', 'ss02', 'cv11';
   }
   ::selection {
-    background: theme('colors.viridis.primary');
-    color: theme('colors.cream.50');
+    background: theme('colors.viridis.lime');
+    color: theme('colors.viridis.900');
   }
   *:focus-visible {
-    @apply outline-none ring-2 ring-viridis-primary ring-offset-2 ring-offset-cream-50 rounded-sm;
+    @apply outline-none ring-2 ring-viridis-lime ring-offset-2 ring-offset-viridis-900 rounded-sm;
   }
   hr {
-    @apply border-cream-200;
+    @apply border-viridis-primary/20;
   }
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: theme('colors.cream.100');
+    background: theme('colors.viridis.900');
   }
   ::-webkit-scrollbar-thumb {
-    background: theme('colors.cream.300');
+    background: theme('colors.viridis.800');
     border-radius: 6px;
   }
   ::-webkit-scrollbar-thumb:hover {
@@ -51,8 +51,8 @@
     inset: 0;
     pointer-events: none;
     opacity: var(--grain-opacity);
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.37  0 0 0 0 0.79  0 0 0 0 0.38  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: screen;
     z-index: 0;
   }
   .text-balance {
@@ -62,7 +62,7 @@
     text-wrap: pretty;
   }
   .viridis-rule {
-    @apply h-px w-full bg-viridis-gradient opacity-60;
+    @apply h-px w-full bg-viridis-gradient opacity-70;
   }
   .heading-display {
     @apply font-serif font-normal tracking-tight text-balance;
@@ -71,25 +71,45 @@
     @apply mx-auto w-full max-w-[1080px] px-6 md:px-10;
   }
   .prose-doc {
-    @apply text-ink-700 leading-relaxed;
+    @apply text-cream-200 leading-relaxed;
   }
   .prose-doc strong {
-    @apply text-ink-900 font-semibold;
+    @apply text-cream-50 font-semibold;
   }
   .prose-doc a {
-    @apply text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent transition;
+    @apply text-viridis-lime underline decoration-viridis-lime/40 underline-offset-4 hover:decoration-viridis-lime transition;
   }
   .prose-doc code {
-    @apply font-mono text-[0.86em] bg-cream-100 text-ink-900 px-1.5 py-0.5 rounded border border-cream-200;
+    @apply font-mono text-[0.86em] bg-viridis-800/60 text-viridis-lime px-1.5 py-0.5 rounded border border-viridis-primary/30;
   }
   .prose-doc p + p {
     @apply mt-3;
   }
+  .lab-label {
+    @apply font-mono text-[0.7rem] uppercase tracking-[0.22em] text-viridis-lime/80;
+  }
+  .data-mono {
+    @apply font-mono tabular-nums text-viridis-lime;
+  }
+  .neon-glow {
+    box-shadow:
+      0 0 0 1px rgba(94, 201, 98, 0.35),
+      0 0 24px -4px rgba(33, 145, 140, 0.55);
+    transition: box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .neon-glow:hover {
+    box-shadow:
+      0 0 0 1px rgba(94, 201, 98, 0.55),
+      0 0 32px -6px rgba(94, 201, 98, 0.6);
+  }
+  .card-dark {
+    @apply rounded-2xl border border-viridis-primary/20 bg-viridis-800/40 backdrop-blur-sm;
+  }
 }
 
-/* Mermaid container — light theme overrides */
+/* Mermaid container — dark theme overrides for CLI figures:pipeline script */
 .mermaid-host {
-  --mermaid-bg: theme('colors.cream.50');
+  --mermaid-bg: theme('colors.viridis.900');
 }
 .mermaid-host .mermaid {
   display: flex;

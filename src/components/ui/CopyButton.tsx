@@ -33,8 +33,8 @@ export default function CopyButton({ value, label = 'Copy', disabled, className,
       onClick={copy}
       disabled={disabled}
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-md border border-cream-200 bg-cream-50/80 backdrop-blur',
-        'text-ink-700 hover:text-accent hover:border-accent transition disabled:opacity-40 disabled:cursor-not-allowed',
+        'inline-flex items-center gap-1.5 rounded-md border border-viridis-primary/30 bg-viridis-800/60 backdrop-blur',
+        'text-cream-100 hover:text-viridis-lime hover:border-viridis-lime transition disabled:opacity-40 disabled:cursor-not-allowed',
         size === 'sm' ? 'px-2.5 py-1 text-xs' : 'px-3 py-1.5 text-sm',
         className,
       )}

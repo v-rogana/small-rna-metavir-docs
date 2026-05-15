@@ -36,8 +36,9 @@ export default function InstallSection() {
   return (
     <section id="installation" className="container-doc py-24 md:py-28">
       <SectionHeading
-        eyebrow="Installation"
-        title="Run the pipeline in a container"
+        figureRef="Installation"
+        eyebrow="Run in a container"
+        title="Reproducible deployment via Docker or Podman"
         description="The recommended path is Docker. Podman is fully supported with staged build caching for faster rebuilds."
       />
 
@@ -58,42 +59,40 @@ export default function InstallSection() {
         />
       </Reveal>
 
-      <h3 className="mt-14 font-mono text-[0.72rem] uppercase tracking-[0.2em] text-ink-500">
-        Required databases
-      </h3>
+      <h3 className="lab-label mt-14">Table 2 — Required databases</h3>
       <Reveal className="mt-4">
         <DataTable
           headers={['Database', 'Container path', 'Size', 'Setup command']}
           rows={[
             [
-              'Host genome',
-              <code key="hp" className="font-mono text-[0.82rem]">-hostgenome param</code>,
-              '1-3 GB',
-              <code key="hc" className="font-mono text-[0.82rem]">bowtie-build --threads 20 host.fa host.fa</code>,
+              <span key="hn" className="text-cream-50 font-medium">Host genome</span>,
+              <code key="hp" className="font-mono text-[0.82rem] text-viridis-lime">-hostgenome param</code>,
+              <span key="hs" className="data-mono">1–3 GB</span>,
+              <code key="hc" className="font-mono text-[0.82rem] text-cream-200/85">bowtie-build --threads 20 host.fa host.fa</code>,
             ],
             [
-              'Bacterial genomes',
-              <code key="bp" className="font-mono text-[0.82rem]">/asset/refs/bacterial_genomes/</code>,
-              '~5 GB',
-              <code key="bc" className="font-mono text-[0.82rem]">bowtie-build --large-index --threads 20 all_bacters.fa all_bacters.fa</code>,
+              <span key="bn" className="text-cream-50 font-medium">Bacterial genomes</span>,
+              <code key="bp" className="font-mono text-[0.82rem] text-viridis-lime">/asset/refs/bacterial_genomes/</code>,
+              <span key="bs" className="data-mono">~5 GB</span>,
+              <code key="bc" className="font-mono text-[0.82rem] text-cream-200/85">bowtie-build --large-index --threads 20 all_bacters.fa all_bacters.fa</code>,
             ],
             [
-              'NCBI nt (core_nt)',
-              <code key="np" className="font-mono text-[0.82rem]">/asset/blastdb/nt/</code>,
-              '~150 GB',
-              <code key="nc" className="font-mono text-[0.82rem]">update_blastdb.pl --decompress nt</code>,
+              <span key="nn" className="text-cream-50 font-medium">NCBI nt (core_nt)</span>,
+              <code key="np" className="font-mono text-[0.82rem] text-viridis-lime">/asset/blastdb/nt/</code>,
+              <span key="ns" className="data-mono">~150 GB</span>,
+              <code key="nc" className="font-mono text-[0.82rem] text-cream-200/85">update_blastdb.pl --decompress nt</code>,
             ],
             [
-              'NCBI nr (Diamond)',
-              <code key="dp" className="font-mono text-[0.82rem]">/asset/diamond/</code>,
-              '~60-100 GB',
-              <code key="dc" className="font-mono text-[0.82rem]">diamond makedb --in nr.gz --db nrcluster_tax --taxonmap …</code>,
+              <span key="dn" className="text-cream-50 font-medium">NCBI nr (Diamond)</span>,
+              <code key="dp" className="font-mono text-[0.82rem] text-viridis-lime">/asset/diamond/</code>,
+              <span key="ds" className="data-mono">~60–100 GB</span>,
+              <code key="dc" className="font-mono text-[0.82rem] text-cream-200/85">diamond makedb --in nr.gz --db nrcluster_tax --taxonmap …</code>,
             ],
             [
-              'RF Classifier',
-              <code key="rp" className="font-mono text-[0.82rem]">/asset/classifier/</code>,
-              '<1 MB',
-              <span key="rc" className="text-ink-500">Included in the repository (asset/)</span>,
+              <span key="rn" className="text-cream-50 font-medium">RF Classifier</span>,
+              <code key="rp" className="font-mono text-[0.82rem] text-viridis-lime">/asset/classifier/</code>,
+              <span key="rs" className="data-mono">&lt;1 MB</span>,
+              <span key="rc" className="text-cream-200/60 text-xs">Included in the repository (asset/)</span>,
             ],
           ]}
         />

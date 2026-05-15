@@ -4,39 +4,51 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Static documentation site for the **small RNA MetaVir** bioinformatics pipeline (viral sequence identification via small RNA profiling). The entire site is a single `index.html` file — all HTML, CSS, and JavaScript are inline. There is no build system, no package manager, and no test suite.
+Documentation site for the **small RNA MetaVir** bioinformatics pipeline (viral sequence identification via small RNA profiling). Built with **Next.js 14** (App Router, TypeScript, Tailwind CSS) and exported as a static site for GitHub Pages.
 
 Live site: https://rnai-bioinfo.github.io/small-rna-metavir-docs/
 Pipeline source: https://github.com/v-rogana/small-rna-metavir
 
 ## Development
 
-There are no build or install steps. To develop:
-1. Edit `index.html` directly
-2. Open in a browser to preview (or use a local HTTP server for full fidelity)
-3. Push to `main` to deploy
+```
+npm install
+npm run dev      # local dev server at http://localhost:3000
+npm run build    # produces ./out/ for static deploy
+npm run lint
+npm run figures:pipeline   # CLI render of the Mermaid pipeline via @mermaid-js/mermaid-cli
+```
 
 ## Deployment
 
-GitHub Pages serves from the root of the `main` branch. The `.nojekyll` file disables Jekyll processing. Pushing to `main` triggers automatic deployment.
+`next.config.mjs` sets `output: 'export'` so `npm run build` writes a fully static site to `out/`. GitHub Pages serves from `main`. The `.nojekyll` file in `public/` disables Jekyll processing. `basePath` and `assetPrefix` are driven by `NEXT_PUBLIC_BASE_PATH` for sub-path hosting.
 
-## Architecture of index.html
+## Architecture
 
-**CSS**: All styles in a single `<style>` block. Viridis-derived color palette via CSS custom properties on `:root` — five reference vars (`--v-purple` through `--v-yellow`) plus derived UI vars (`--accent`, `--bg`, `--card`, etc.). Fonts: `--ft` serif, `--fb` sans-serif, `--fc` monospace. Responsive breakpoints at 500px, 700px, and 768px. Viridis gradient used on `h2` border-bottom and footer border-top via `border-image`.
+**Routing**: App Router under `src/app/` (`layout.tsx`, `page.tsx`). Single landing page composed of section components from `src/components/`.
 
-**SVG icon sprite**: Hidden `<svg>` block at top of `<body>` defines `<symbol>` elements (flask, zap, layers, external-link, message, bot). Referenced via `<svg class="icon"><use href="#icon-name"/></svg>`. Icons use `stroke="currentColor"` to inherit context color.
+**Styling**: Tailwind CSS (`tailwind.config.ts`) with a Viridis-inspired palette (`ink-*`, `cream-*`, plus accent tokens). Global styles and CSS variables in `src/app/globals.css`. Fonts loaded in `layout.tsx`: DM Serif Display (headings), DM Sans (body), JetBrains Mono (code).
 
-**HTML sections**: Fixed nav bar, hero, then content sections inside `.wrap`: About (`#about`), Pipeline (`#pipeline`), Installation (`#installation`), Parameters (`#parameters`), Examples (`#examples`), Glossary (`#glossary`), footer.
+**Section components** (`src/components/`):
+- `PipelineSection.tsx` — renders the pipeline diagram, legend, and tech-stack table
+- Other sections for About, Installation, Parameters, Examples, Glossary
+- `ui/` — shared primitives: `Reveal` (scroll-triggered fade-in via `react-intersection-observer` + Framer Motion), `SectionHeading`, `Tag`, etc.
 
-**Scroll animations**: Elements with `.reveal` class fade-in + slide-up (500ms cubic-bezier) when they enter the viewport. Grid containers with `.stagger` class apply incremental `transition-delay` (100ms per child) to `.reveal` children. Hero uses a CSS `@keyframes heroIn` animation on page load. All animations respect `prefers-reduced-motion: reduce`.
+**Pipeline diagram**: `public/pipeline_refined.drawio.svg`, exported from a draw.io source. The diagram is organized in **four phases** with a Tailwind-style palette: Phase 1 — Preprocessing & Filtering (sky), Phase 2 — De Novo Assembly (green), Phase 3 — Meta-Assembly & Similarity (amber), Phase 4 — Profiling & Classification (purple). `PipelineSection.tsx` loads it via `<img>` and respects `NEXT_PUBLIC_BASE_PATH` for sub-path hosting. The legend below the diagram mirrors the chip colors from the SVG so readers can map phases at a glance.
 
-**Mermaid diagram**: Pipeline flowchart rendered client-side by Mermaid.js 11 (CDN). Viridis-themed via `%%{init}%%` directive and `classDef` (filter=blue, assembly=teal, similarity=gold, ml=purple, output=green). Edit the flowchart markup directly in the `<pre class="mermaid">` block.
+To edit the diagram: open the SVG at [app.diagrams.net](https://app.diagrams.net) (drawio embeds the editable XML inside the SVG via the `content` attribute), refine, then File → Export as → SVG and overwrite `public/pipeline_refined.drawio.svg`. If you also want to update the legend colors, edit the `PHASES` array in `src/components/PipelineSection.tsx`.
 
-**Chatbot**: Floating button + slide-in panel. Calls OpenAI API (gpt-4o-mini) client-side with a ~2,500-word system prompt containing full pipeline knowledge. API key entered by user at runtime, held only in JS memory. Chat history maintained in a `history` array for the session.
+**Legacy Mermaid (not rendered)**: `src/data/pipelineMermaid.ts` and the `mermaid` npm dependency remain only to support the `npm run figures:pipeline` CLI script (`tests/render-pipeline.mjs`), which produces a PNG/SVG of the older Mermaid flowchart for external/static use. The Mermaid diagram is no longer shown on the page.
 
-**Navigation highlighting**: IntersectionObserver watches `<section>` elements to set `.active` on nav links.
+**Scroll animations**: `Reveal` wrapper handles fade-in + slide-up on intersection. Respects `prefers-reduced-motion`.
 
-## External CDN Dependencies
+**Chatbot**: Calls OpenAI API (gpt-4o-mini) client-side with a system prompt containing pipeline knowledge. API key entered at runtime, held only in JS memory.
 
-- Mermaid.js 11: `cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js`
-- Google Fonts: Fraunces (headings), Inter (body), JetBrains Mono (code)
+## Key Dependencies
+
+- `next` 14.2 (App Router, static export)
+- `mermaid` 11 — used only by the `figures:pipeline` CLI script, not bundled in the page
+- `framer-motion`, `react-intersection-observer` — scroll animations
+- `lucide-react` — icons
+- `react-markdown`, `remark-gfm` — markdown rendering
+- `@mermaid-js/mermaid-cli` (dev) — used by `tests/render-pipeline.mjs` for `figures:pipeline`

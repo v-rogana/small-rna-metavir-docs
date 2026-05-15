@@ -1,106 +1,124 @@
-'use client';
-
-import { useEffect, useId, useState } from 'react';
 import Reveal from './ui/Reveal';
 import SectionHeading from './ui/SectionHeading';
-import Tag from './ui/Tag';
-import { PIPELINE_MERMAID } from '@/data/pipelineMermaid';
+
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || '';
+const PIPELINE_SVG_SRC = `${BASE_PATH}/pipeline_refined.drawio.svg`;
+
+type Phase = {
+  num: string;
+  title: string;
+  steps: string;
+  bg: string;
+  border: string;
+  fg: string;
+};
+
+const PHASES: Phase[] = [
+  {
+    num: '01',
+    title: 'Preprocessing & Filtering',
+    steps: 'Trim Galore + FastQC, Bowtie vs host, Bowtie vs bacteria, size selection',
+    bg: '#1a2738',
+    border: '#3b82f6',
+    fg: '#a3bbff',
+  },
+  {
+    num: '02',
+    title: 'De Novo Assembly',
+    steps: 'Velvet Optimiser, Velvet fixed (k=15), SPAdes (k=13–19), siRNA-focused (20–23 nt)',
+    bg: '#072311',
+    border: '#22c55e',
+    fg: '#8cc2a2',
+  },
+  {
+    num: '03',
+    title: 'Meta-Assembly & Similarity',
+    steps: 'CAP3 merge (≥200 nt), BLASTn vs NCBI nt, Diamond BLASTx vs NCBI nr',
+    bg: '#271e00',
+    border: '#d97706',
+    fg: '#e6ac8c',
+  },
+  {
+    num: '04',
+    title: 'Profiling & Classification',
+    steps: 'Bowtie remap, sRNA size profiles (18–35 nt), Z-scores, Random Forest (viral vs EVE)',
+    bg: '#291f33',
+    border: '#a855f7',
+    fg: '#e6b2ff',
+  },
+];
 
 export default function PipelineSection() {
-  const renderId = useId().replace(/[^a-zA-Z0-9]/g, '');
-  const [svg, setSvg] = useState<string | null>(null);
-  const [failed, setFailed] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const mermaid = (await import('mermaid')).default;
-        mermaid.initialize({
-          startOnLoad: false,
-          theme: 'base',
-          securityLevel: 'loose',
-          flowchart: { htmlLabels: true, curve: 'basis' },
-        });
-        const { svg: out } = await mermaid.render(`metavir-${renderId}`, PIPELINE_MERMAID);
-        if (!cancelled) setSvg(out);
-      } catch (e) {
-        console.error('Mermaid render failed', e);
-        if (!cancelled) setFailed(true);
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [renderId]);
-
   return (
-    <section id="pipeline" className="relative bg-ink-900 text-cream-100 py-24 md:py-32">
+    <section
+      id="pipeline"
+      className="relative border-y border-viridis-primary/15 bg-viridis-900 text-cream-100 py-24 md:py-32"
+    >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-30"
+        className="pointer-events-none absolute inset-0 opacity-50"
         style={{
           background:
-            'radial-gradient(60% 50% at 50% 0%, rgba(33,145,140,0.25) 0%, transparent 70%)',
+            'radial-gradient(60% 50% at 50% 0%, rgba(94,201,98,0.18) 0%, transparent 65%), radial-gradient(40% 40% at 80% 90%, rgba(68,1,84,0.30) 0%, transparent 70%)',
         }}
       />
       <div className="container-doc relative">
         <SectionHeading
-          eyebrow="Pipeline architecture"
-          title="From raw reads to virus / EVE classification"
-          description="The pipeline orchestrates 12+ stages, color-coded by stage type. Each step is implemented in Perl, Python, or R, and runs inside the Docker / Podman image."
-          inverse
+          figureRef="Pipeline architecture"
+          eyebrow="From raw reads to classification"
+          title="Twelve stages, four phases, one container"
+          description="The pipeline orchestrates 12+ stages grouped into four phases. Each step is implemented in Perl, Python, or R, and runs inside the Docker / Podman image."
         />
 
         <Reveal>
-          <div className="mermaid-host overflow-x-auto rounded-2xl border border-ink-700 bg-cream-50 p-6 md:p-10 shadow-glow-lg">
-            {svg ? (
-              <div
-                className="mermaid flex justify-center"
-                dangerouslySetInnerHTML={{ __html: svg }}
-              />
-            ) : failed ? (
-              <p className="text-sm text-ink-500">
-                Pipeline diagram failed to render. Reload the page or check the console.
-              </p>
-            ) : (
-              <p className="text-sm text-ink-500">Loading pipeline diagram…</p>
-            )}
-          </div>
+          <figure className="overflow-x-auto py-2">
+            <img
+              src={PIPELINE_SVG_SRC}
+              alt="small RNA MetaVir pipeline architecture — four phases from preprocessing to classification"
+              className="mx-auto block h-auto w-full max-w-5xl"
+            />
+            <figcaption className="lab-label mt-4 text-center">
+              Fig. 1 · Four-phase pipeline — preprocessing → assembly → similarity → classification
+            </figcaption>
+          </figure>
         </Reveal>
 
         <Reveal delay={0.05}>
-          <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-cream-200/90">
-            <span className="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-cream-200/60">
-              Legend
-            </span>
-            <span className="flex items-center gap-2">
-              <Tag tone="blue">Filtering</Tag> Host, bacteria, size
-            </span>
-            <span className="flex items-center gap-2">
-              <Tag tone="teal">Assembly</Tag> Velvet, SPAdes, CAP3
-            </span>
-            <span className="flex items-center gap-2">
-              <Tag tone="gold">Similarity</Tag> BLAST, Diamond
-            </span>
-            <span className="flex items-center gap-2">
-              <Tag tone="purple">ML</Tag> Profiling, Z-scores, RF
-            </span>
+          <div className="mt-10">
+            <div className="lab-label mb-4">Phase legend</div>
+            <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {PHASES.map((p) => (
+                <li
+                  key={p.num}
+                  className="card-dark group p-4 transition hover:shadow-neon hover:-translate-y-0.5"
+                  style={{ borderColor: `${p.border}55` }}
+                >
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="inline-flex h-7 min-w-[2.25rem] items-center justify-center rounded-full px-2 font-mono text-[0.72rem] font-semibold"
+                      style={{ backgroundColor: p.bg, color: p.fg }}
+                    >
+                      {p.num}
+                    </span>
+                    <span className="font-medium text-sm text-cream-50">{p.title}</span>
+                  </div>
+                  <p className="mt-2 text-xs leading-relaxed text-cream-200/75">{p.steps}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </Reveal>
 
-        <h3 className="mt-16 font-mono text-[0.72rem] uppercase tracking-[0.2em] text-cream-200/70">
-          Technology stack
-        </h3>
+        <h3 className="lab-label mt-16">Technology stack</h3>
         <Reveal className="mt-4">
-          <div className="overflow-x-auto rounded-xl border border-ink-700 bg-ink-900/40 backdrop-blur">
+          <div className="overflow-x-auto rounded-xl border border-viridis-primary/20 bg-viridis-800/40 backdrop-blur">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="bg-ink-700/40">
-                  <th className="px-4 py-3 font-mono text-[0.72rem] uppercase tracking-wider text-cream-200/60">
+                <tr className="bg-viridis-800/70 border-b border-viridis-primary/20">
+                  <th className="px-4 py-3 font-mono text-[0.72rem] uppercase tracking-wider text-viridis-lime/80">
                     Category
                   </th>
-                  <th className="px-4 py-3 font-mono text-[0.72rem] uppercase tracking-wider text-cream-200/60">
+                  <th className="px-4 py-3 font-mono text-[0.72rem] uppercase tracking-wider text-viridis-lime/80">
                     Tools &amp; versions
                   </th>
                 </tr>
@@ -117,8 +135,11 @@ export default function PipelineSection() {
                   ['R Packages', 'ggplot2, reshape2, Rtsne, umap, ComplexHeatmap'],
                   ['Containerization', 'Docker (multi-stage Dockerfile) / Podman'],
                 ].map(([cat, tools]) => (
-                  <tr key={cat} className="border-t border-ink-700/60 hover:bg-ink-700/30">
-                    <td className="px-4 py-3 align-top text-cream-100 font-medium">{cat}</td>
+                  <tr
+                    key={cat}
+                    className="border-t border-viridis-primary/10 transition hover:bg-viridis-primary/10"
+                  >
+                    <td className="px-4 py-3 align-top text-viridis-lime font-mono text-[0.85rem]">{cat}</td>
                     <td className="px-4 py-3 align-top text-cream-200/85">{tools}</td>
                   </tr>
                 ))}

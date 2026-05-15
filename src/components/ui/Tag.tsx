@@ -3,12 +3,12 @@ import { cn } from '@/lib/cn';
 type Tone = 'teal' | 'gold' | 'blue' | 'red' | 'purple' | 'lime';
 
 const TONES: Record<Tone, string> = {
-  teal: 'bg-viridis-primary/10 text-viridis-primary ring-viridis-primary/30',
-  gold: 'bg-viridis-sun/15 text-[#7d6b0a] ring-viridis-sun/40',
-  blue: 'bg-viridis-deep/10 text-viridis-deep ring-viridis-deep/30',
-  red: 'bg-terracotta/12 text-terracotta ring-terracotta/30',
-  purple: 'bg-viridis-dark/10 text-viridis-dark ring-viridis-dark/30',
-  lime: 'bg-viridis-lime/15 text-[#1d6e2a] ring-viridis-lime/40',
+  teal: 'bg-viridis-primary/15 text-[#7fded8] ring-viridis-primary/40',
+  gold: 'bg-viridis-sun/15 text-viridis-sun ring-viridis-sun/40',
+  blue: 'bg-viridis-deep/25 text-[#a8b9e8] ring-viridis-deep/50',
+  red: 'bg-terracotta/15 text-terracotta ring-terracotta/40',
+  purple: 'bg-viridis-dark/30 text-[#e0c8ff] ring-viridis-dark/60',
+  lime: 'bg-viridis-lime/15 text-viridis-lime ring-viridis-lime/40',
 };
 
 export default function Tag({

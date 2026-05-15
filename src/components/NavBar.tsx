@@ -48,16 +48,16 @@ export default function NavBar() {
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-silk',
         scrolled
-          ? 'bg-cream-50/85 backdrop-blur-md border-b border-cream-200 shadow-soft'
+          ? 'bg-viridis-900/85 backdrop-blur-md border-b border-viridis-primary/20 shadow-soft'
           : 'bg-transparent',
       )}
     >
       <div className="container-doc flex h-[68px] items-center justify-between gap-4">
         <a href="#" className="flex items-baseline gap-2 group">
-          <span className="font-serif text-xl text-ink-900 group-hover:text-accent transition">
+          <span className="font-serif text-xl text-cream-50 group-hover:text-viridis-lime transition">
             sRNA MetaVir
           </span>
-          <span className="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-ink-500">
+          <span className="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-viridis-lime/60">
             docs
           </span>
         </a>
@@ -70,15 +70,15 @@ export default function NavBar() {
               className={cn(
                 'relative px-3 py-2 text-sm font-medium transition rounded-md',
                 active === l.href
-                  ? 'text-accent'
-                  : 'text-ink-700 hover:text-ink-900',
+                  ? 'text-viridis-lime'
+                  : 'text-cream-200/75 hover:text-cream-50',
               )}
             >
               {l.label}
               {active === l.href && (
                 <motion.span
                   layoutId="nav-underline"
-                  className="absolute inset-x-3 -bottom-0.5 h-px bg-accent"
+                  className="absolute inset-x-3 -bottom-0.5 h-px bg-viridis-lime shadow-[0_0_8px_rgba(94,201,98,0.8)]"
                   transition={{ type: 'spring', stiffness: 480, damping: 36 }}
                 />
               )}
@@ -87,7 +87,7 @@ export default function NavBar() {
         </nav>
 
         <button
-          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md text-ink-700 hover:text-accent"
+          className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md text-cream-200 hover:text-viridis-lime"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
@@ -104,7 +104,7 @@ export default function NavBar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden border-t border-cream-200 bg-cream-50/95 backdrop-blur"
+            className="md:hidden border-t border-viridis-primary/20 bg-viridis-900/95 backdrop-blur"
           >
             <div className="container-doc flex flex-col py-3">
               {NAV_LINKS.map((l) => (
@@ -114,7 +114,7 @@ export default function NavBar() {
                   onClick={() => setOpen(false)}
                   className={cn(
                     'py-2 text-sm font-medium transition',
-                    active === l.href ? 'text-accent' : 'text-ink-700',
+                    active === l.href ? 'text-viridis-lime' : 'text-cream-200/80',
                   )}
                 >
                   {l.label}
