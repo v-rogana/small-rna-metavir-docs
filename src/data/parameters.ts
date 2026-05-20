@@ -44,7 +44,7 @@ export const OPTIONAL_PARAMS: ParamRow[] = [
   { flag: '-clean', type: 'off', description: 'Remove large intermediate files (SAMs, assembly dirs). Saves 50-80% disk space.' },
   { flag: '-largeindex', type: 'off', description: 'Use Bowtie --large-index for host genomes exceeding 4 GB.' },
   { flag: '-degradation', type: 'off', description: 'Enable additional 24-30 nt assembly (piRNA-focused). Partially disabled in current code.' },
-  { flag: '-h', type: '—', description: 'Display help message and exit.' },
+  { flag: '-h', type: 'flag', description: 'Display help message and exit.' },
 ];
 
 export const HARDCODED_CONSTANTS = [

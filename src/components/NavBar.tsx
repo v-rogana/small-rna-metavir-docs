@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { href: '#installation', label: 'Installation' },
   { href: '#parameters', label: 'Parameters' },
   { href: '#examples', label: 'Examples' },
+  { href: '#results', label: 'Case Study' },
   { href: '#glossary', label: 'Glossary' },
 ];
 

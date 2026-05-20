@@ -47,6 +47,7 @@ export default function Footer() {
               ['#installation', 'Installation'],
               ['#parameters', 'Parameters'],
               ['#examples', 'Examples'],
+              ['#results', 'Case Study'],
               ['#glossary', 'Glossary'],
             ].map(([h, l]) => (
               <li key={h}>

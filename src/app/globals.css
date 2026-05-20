@@ -107,7 +107,7 @@
   }
 }
 
-/* Mermaid container — dark theme overrides for CLI figures:pipeline script */
+/* Mermaid container: dark theme overrides for CLI figures:pipeline script */
 .mermaid-host {
   --mermaid-bg: theme('colors.viridis.900');
 }

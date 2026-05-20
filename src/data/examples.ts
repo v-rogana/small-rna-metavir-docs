@@ -57,7 +57,7 @@ perl main.pl \\
 
 export const INTERPRETATION_MATRIX = [
   { similarity: 'viral', mlClass: 'viral', interpretation: 'Confirmed active virus. Known virus with siRNA-like profile.', tone: 'red' as const },
-  { similarity: 'viral', mlClass: 'eve', interpretation: 'Possible EVE. Known virus but piRNA-like profile — may be integrated.', tone: 'gold' as const },
+  { similarity: 'viral', mlClass: 'eve', interpretation: 'Possible EVE. Known virus but piRNA-like profile, may be integrated.', tone: 'gold' as const },
   { similarity: 'nohit', mlClass: 'viral', interpretation: 'Novel viral candidate! No database match but viral sRNA signature.', tone: 'red' as const },
   { similarity: 'nohit', mlClass: 'eve', interpretation: 'Unknown sequence with EVE-like profile.', tone: 'gold' as const },
   { similarity: 'nonviral', mlClass: 'viral', interpretation: 'Non-viral hit but viral profile. Inspect manually.', tone: 'teal' as const },

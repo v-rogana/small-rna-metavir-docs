@@ -31,8 +31,14 @@ npm run figures:pipeline   # CLI render of the Mermaid pipeline via @mermaid-js/
 
 **Section components** (`src/components/`):
 - `PipelineSection.tsx` — renders the pipeline diagram, legend, and tech-stack table
+- `ResultsSection.tsx` — real-sample case study (*Aedes aegypti*, sample `sRNACrnGmqlN`): read funnel, contig classification, top BLASTn hits, two highlight contigs (active siRNA virus vs genome-integrated EVE), aggregate small-RNA signature, and a gallery of real pipeline figures
 - Other sections for About, Installation, Parameters, Examples, Glossary
 - `ui/` — shared primitives: `Reveal` (scroll-triggered fade-in via `react-intersection-observer` + Framer Motion), `SectionHeading`, `Tag`, etc.
+
+**Results / case-study section**: order in `page.tsx` is About → Pipeline → Installation → Parameters → Examples → **Results** (`#results`) → Glossary; the anchor is mirrored in `NavBar.tsx` (`NAV_LINKS`) and `Footer.tsx` quick links.
+- Data lives in `src/data/results.ts` as typed static constants extracted from one example output tree (read funnel, classification buckets, top viral hits, highlight-contig size/coverage arrays, aggregate base distribution, case-study metadata). No runtime parsing — edit this file to swap in a different sample.
+- Charts are hand-rolled inline SVG (no charting library) in `src/components/ui/`: `ReadFunnel`, `ClassificationChart`, `SizeProfileChart` (the strand-split size profile, reused for both highlight contigs and the aggregate), and `CoverageTrack`. Colors are hardcoded hex matching the Tailwind viridis tokens; animation comes from wrapping each block in `Reveal`.
+- The 3 authentic figures in `public/results/*.svg` are converted from pipeline PDF outputs via PyMuPDF: `pip install pymupdf`, then `fitz.open(pdf)[0].get_svg_image()`. Re-run that one-liner to refresh them; they're referenced by `RAW_FIGURES` in `results.ts` and respect `NEXT_PUBLIC_BASE_PATH`.
 
 **Pipeline diagram**: `public/pipeline_refined.drawio.svg`, exported from a draw.io source. The diagram is organized in **four phases** with a Tailwind-style palette: Phase 1 — Preprocessing & Filtering (sky), Phase 2 — De Novo Assembly (green), Phase 3 — Meta-Assembly & Similarity (amber), Phase 4 — Profiling & Classification (purple). `PipelineSection.tsx` loads it via `<img>` and respects `NEXT_PUBLIC_BASE_PATH` for sub-path hosting. The legend below the diagram mirrors the chip colors from the SVG so readers can map phases at a glance.
 

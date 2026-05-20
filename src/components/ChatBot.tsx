@@ -130,12 +130,12 @@ export default function ChatBot() {
 
             <div ref={msgsRef} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
               <div className="rounded-lg border border-viridis-sun/30 bg-viridis-sun/5 px-3 py-2 text-xs text-viridis-sun">
-                Uses OpenAI gpt-4o-mini. Your key stays in memory only — never stored or sent
+                Uses OpenAI gpt-4o-mini. Your key stays in memory only, never stored or sent
                 anywhere except OpenAI.
               </div>
               {messages.length === 0 && (
                 <div className="rounded-xl bg-ink-700/40 px-3 py-2.5 text-sm text-cream-200/90">
-                  Hi! Ask me about the small RNA MetaVir pipeline — biology, installation,
+                  Hi! Ask me about the small RNA MetaVir pipeline: biology, installation,
                   parameters, or troubleshooting.
                 </div>
               )}

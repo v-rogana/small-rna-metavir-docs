@@ -59,7 +59,7 @@ export default function InstallSection() {
         />
       </Reveal>
 
-      <h3 className="lab-label mt-14">Table 2 — Required databases</h3>
+      <h3 className="lab-label mt-14">Table 2 · Required databases</h3>
       <Reveal className="mt-4">
         <DataTable
           headers={['Database', 'Container path', 'Size', 'Setup command']}

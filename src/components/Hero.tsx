@@ -82,7 +82,7 @@ export default function Hero() {
           className="mx-auto mt-6 max-w-2xl text-pretty text-base md:text-lg text-cream-200/75"
         >
           Automated viral sequence identification through small RNA profiling. Discover novel
-          viruses invisible to BLAST — via the molecular signatures of RNA interference.
+          viruses invisible to BLAST, through the molecular signatures of RNA interference.
         </motion.p>
 
         <motion.div

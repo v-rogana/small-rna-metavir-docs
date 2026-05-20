@@ -1,13 +1,28 @@
 import Reveal from './ui/Reveal';
 import SectionHeading from './ui/SectionHeading';
+import { CASE_STUDY, READ_FUNNEL, CONTIG_TOTAL, CLASS_COMBINED, ML_VIRUS_EVE } from '@/data/results';
 
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || '';
 const PIPELINE_SVG_SRC = `${BASE_PATH}/pipeline_refined.drawio.svg`;
+
+// Short reads formatter, mirrors ReadFunnel's fmt (no space, e.g. "20.15M", "931K").
+function fmt(n: number): string {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(2)}M`;
+  if (n >= 1_000) return `${Math.round(n / 1_000)}K`;
+  return String(n);
+}
+
+// Example-output numbers derived from the real case-study run (single source: results.ts).
+const RAW_READS = READ_FUNNEL.find((s) => s.key === 'raw')!.reads;
+const SIZE_SELECTED = READ_FUNNEL.find((s) => s.key === 'userrange')!.reads;
+const VIRAL_CONTIGS = CLASS_COMBINED.find((b) => b.key === 'viral')!.count;
+const EVE_COUNT = ML_VIRUS_EVE.find((b) => b.key === 've')!.count;
 
 type Phase = {
   num: string;
   title: string;
   steps: string;
+  example?: string;
   bg: string;
   border: string;
   fg: string;
@@ -18,6 +33,7 @@ const PHASES: Phase[] = [
     num: '01',
     title: 'Preprocessing & Filtering',
     steps: 'Trim Galore + FastQC, Bowtie vs host, Bowtie vs bacteria, size selection',
+    example: `${fmt(RAW_READS)} raw reads → ${fmt(SIZE_SELECTED)} size-selected (18–35 nt)`,
     bg: '#1a2738',
     border: '#3b82f6',
     fg: '#a3bbff',
@@ -26,6 +42,7 @@ const PHASES: Phase[] = [
     num: '02',
     title: 'De Novo Assembly',
     steps: 'Velvet Optimiser, Velvet fixed (k=15), SPAdes (k=13–19), siRNA-focused (20–23 nt)',
+    example: '4 parallel assemblies · Velvet + SPAdes',
     bg: '#072311',
     border: '#22c55e',
     fg: '#8cc2a2',
@@ -34,6 +51,7 @@ const PHASES: Phase[] = [
     num: '03',
     title: 'Meta-Assembly & Similarity',
     steps: 'CAP3 merge (≥200 nt), BLASTn vs NCBI nt, Diamond BLASTx vs NCBI nr',
+    example: `${CONTIG_TOTAL} contigs ≥200 nt → ${VIRAL_CONTIGS} viral`,
     bg: '#271e00',
     border: '#d97706',
     fg: '#e6ac8c',
@@ -42,6 +60,7 @@ const PHASES: Phase[] = [
     num: '04',
     title: 'Profiling & Classification',
     steps: 'Bowtie remap, sRNA size profiles (18–35 nt), Z-scores, Random Forest (viral vs EVE)',
+    example: `${CASE_STUDY.viralReads.toLocaleString('en-US')} viral reads · 21 nt peak · ${EVE_COUNT} EVEs`,
     bg: '#291f33',
     border: '#a855f7',
     fg: '#e6b2ff',
@@ -74,11 +93,11 @@ export default function PipelineSection() {
           <figure className="overflow-x-auto py-2">
             <img
               src={PIPELINE_SVG_SRC}
-              alt="small RNA MetaVir pipeline architecture — four phases from preprocessing to classification"
+              alt="small RNA MetaVir pipeline architecture, four phases from preprocessing to classification"
               className="mx-auto block h-auto w-full max-w-5xl"
             />
             <figcaption className="lab-label mt-4 text-center">
-              Fig. 1 · Four-phase pipeline — preprocessing → assembly → similarity → classification
+              Fig. 1 · Four-phase pipeline · preprocessing → assembly → similarity → classification
             </figcaption>
           </figure>
         </Reveal>
@@ -103,9 +122,18 @@ export default function PipelineSection() {
                     <span className="font-medium text-sm text-cream-50">{p.title}</span>
                   </div>
                   <p className="mt-2 text-xs leading-relaxed text-cream-200/75">{p.steps}</p>
+                  {p.example && (
+                    <p className="mt-3 border-t border-viridis-primary/15 pt-2 font-mono text-[0.7rem] leading-relaxed text-cream-200/65">
+                      <span style={{ color: p.fg }}>ex · </span>
+                      {p.example}
+                    </p>
+                  )}
                 </li>
               ))}
             </ol>
+            <p className="mt-3 text-xs text-cream-200/45">
+              Example outputs from case study {CASE_STUDY.sample} (<em>{CASE_STUDY.host}</em>).
+            </p>
           </div>
         </Reveal>
 

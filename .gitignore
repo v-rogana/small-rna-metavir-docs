@@ -22,3 +22,15 @@ next-env.d.ts
 /tests/results/runs/
 /tests/__pycache__/
 /tests/.venv/
+
+# raw pipeline output tree (~864 MB) — curated figures live in public/results/
+/sRNACrnGmqlN/
+
+# build artifacts
+tsconfig.tsbuildinfo
+
+# Claude local settings
+.claude/
+
+# stray local export (accidental save)
+*pipeline_end.svg

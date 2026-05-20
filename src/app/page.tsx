@@ -4,6 +4,7 @@ import PipelineSection from '@/components/PipelineSection';
 import InstallSection from '@/components/InstallSection';
 import ParametersSection from '@/components/ParametersSection';
 import ExamplesSection from '@/components/ExamplesSection';
+import ResultsSection from '@/components/ResultsSection';
 import GlossarySection from '@/components/GlossarySection';
 
 export default function HomePage() {
@@ -15,6 +16,7 @@ export default function HomePage() {
       <InstallSection />
       <ParametersSection />
       <ExamplesSection />
+      <ResultsSection />
       <GlossarySection />
     </>
   );

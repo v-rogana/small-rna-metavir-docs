@@ -20,7 +20,7 @@ export default function ParametersSection() {
           description="Required, optional and the hardcoded constants you may need to know about when troubleshooting."
         />
 
-        <h3 className="lab-label">Table 3 — Required parameters</h3>
+        <h3 className="lab-label">Table 3 · Required parameters</h3>
         <Reveal className="mt-4">
           <DataTable
             headers={['Parameter', 'Type', 'Description', 'Example']}
@@ -33,7 +33,7 @@ export default function ParametersSection() {
           />
         </Reveal>
 
-        <h3 className="lab-label mt-12">Table 4 — Optional parameters</h3>
+        <h3 className="lab-label mt-12">Table 4 · Optional parameters</h3>
         <Reveal className="mt-4">
           <DataTable
             headers={['Parameter', 'Default', 'Description']}
@@ -45,7 +45,7 @@ export default function ParametersSection() {
           />
         </Reveal>
 
-        <h3 className="lab-label mt-12">Table 5 — Key internal constants</h3>
+        <h3 className="lab-label mt-12">Table 5 · Key internal constants</h3>
         <Reveal className="mt-4">
           <DataTable
             headers={['Tool', 'Parameter', 'Value']}

@@ -40,7 +40,7 @@ export default function ExamplesSection() {
         ))}
       </div>
 
-      <h3 className="lab-label mt-16">Table 6 — Interpreting classification results</h3>
+      <h3 className="lab-label mt-16">Table 6 · Interpreting classification results</h3>
       <Reveal className="mt-4">
         <DataTable
           headers={['Similarity', 'ML class', 'Interpretation']}

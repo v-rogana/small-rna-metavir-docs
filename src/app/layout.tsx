@@ -27,7 +27,7 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'small RNA MetaVir — Documentation',
+  title: 'small RNA MetaVir · Documentation',
   description:
     'Documentation and AI assistant for the small RNA MetaVir bioinformatics pipeline for viral sequence identification via small RNA profiling.',
   metadataBase: new URL('https://rnai-bioinfo.github.io/small-rna-metavir-docs/'),
