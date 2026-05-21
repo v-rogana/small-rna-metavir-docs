@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "figures:pipeline": "node tests/render-pipeline.mjs"
+    "figures:pipeline": "node tests/render-pipeline.mjs",
+    "figures:results": "tsx tests/render-results-figures.tsx"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -29,6 +30,7 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
+    "tsx": "^4.22.3",
     "typescript": "^5.6.2"
   }
 }
