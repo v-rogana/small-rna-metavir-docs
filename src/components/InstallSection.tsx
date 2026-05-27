@@ -5,7 +5,7 @@ import Tabs from './ui/Tabs';
 import DataTable from './ui/DataTable';
 
 const DOCKER_CMDS = `# 1. Clone the repository
-git clone https://github.com/v-rogana/small-rna-metavir.git
+git clone https://github.com/rnai-bioinfo/small-rna-metavir.git
 cd small-rna-metavir/docker
 
 # 2. Build the Docker image (30-60 min first time)

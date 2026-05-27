@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Documentation site for the **small RNA MetaVir** bioinformatics pipeline (viral sequence identification via small RNA profiling). Built with **Next.js 14** (App Router, TypeScript, Tailwind CSS) and exported as a static site for GitHub Pages.
 
 Live site: https://rnai-bioinfo.github.io/small-rna-metavir-docs/
-Pipeline source: https://github.com/v-rogana/small-rna-metavir
+Pipeline source: https://github.com/rnai-bioinfo/small-rna-metavir
 
 ## Development
 

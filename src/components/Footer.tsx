@@ -16,7 +16,7 @@ export default function Footer() {
           <ul className="mt-3 space-y-2 text-sm">
             <li>
               <a
-                href="https://github.com/v-rogana/small-rna-metavir"
+                href="https://github.com/rnai-bioinfo/small-rna-metavir"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-cream-200/85 hover:text-viridis-lime transition"

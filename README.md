@@ -20,7 +20,7 @@ small RNA MetaVir is an automated bioinformatics pipeline for identifying viral 
 ## Pipeline Repository
 
 The pipeline source code lives in a separate repository:
-[https://github.com/v-rogana/small-rna-metavir](https://github.com/v-rogana/small-rna-metavir)
+[https://github.com/rnai-bioinfo/small-rna-metavir](https://github.com/rnai-bioinfo/small-rna-metavir)
 
 ## Deploying
 

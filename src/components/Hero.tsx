@@ -119,7 +119,7 @@ export default function Hero() {
             <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
           </a>
           <a
-            href="https://github.com/v-rogana/small-rna-metavir"
+            href="https://github.com/rnai-bioinfo/small-rna-metavir"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-viridis-primary/40 bg-viridis-800/40 backdrop-blur px-6 py-3 text-sm font-semibold text-cream-100 hover:border-viridis-lime hover:text-viridis-lime transition"
