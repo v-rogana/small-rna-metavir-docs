@@ -28,8 +28,10 @@ jobs:
       - run: npm ci
 
       - name: Build (Next.js static export)
+        # NÃO injetar chave de API aqui: NEXT_PUBLIC_* vai parar no JS público
+        # do site e qualquer um lê pelo DevTools. A chave é digitada em runtime
+        # no chatbot (formulário "Connect") e fica só na memória do navegador.
         env:
-          NEXT_PUBLIC_OPENAI_API_KEY: ${{ vars.OPENAI_API_KEY }}
           NEXT_PUBLIC_BASE_PATH: /small-rna-metavir-docs
         run: npm run build
 
